@@ -1,0 +1,11 @@
+{
+  "name": "work-cli",
+  "version": "1.0.0",
+  "description": "work-cli",
+  "bin": {
+    "work-cli": "main/index.js"
+  },
+  "repository": "https://github.com/youngs-github/work-cli.git",
+  "author": "yangqingcheng <yangqingcheng@kedacom.com>",
+  "license": "MIT"
+}
