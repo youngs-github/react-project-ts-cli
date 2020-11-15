@@ -1,11 +1,25 @@
 {
-  "name": "work-cli",
+  "name": "react-project-ts-cli",
   "version": "1.0.0",
-  "description": "work-cli",
+  "description": "react-project-ts-cli",
   "bin": {
-    "work-cli": "main/index.js"
+    "react-project-ts-cli": "./bin/index.js"
   },
-  "repository": "https://github.com/youngs-github/work-cli.git",
+  "engines": {
+    "node": ">=12"
+  },
+  "repository": "https://github.com/youngs-github/react-project-ts-cli.git",
   "author": "yangqingcheng <yangqingcheng@kedacom.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "commander": "^6.2.0",
+    "git-clone": "^0.1.0",
+    "inquirer": "^7.3.3",
+    "node-fetch": "^2.6.1",
+    "ora": "^5.1.0",
+    "request": "^2.88.2",
+    "rimraf": "^3.0.2",
+    "semver": "^7.3.2"
+  }
 }
