@@ -16,22 +16,10 @@ const packageJson = require('../package.json');
 /**
  * usage
  */
-program.usage('<project-name>');
-
-/**
- * options
- */
 program
-  .option('-h, -help', () => {
-    console.log();
-    console.log('react-project-ts-cli my-project');
-    console.log();
-  })
-  .option('-v, -version', () => {
-    console.log();
-    console.log(`${packageJson.version}`);
-    console.log();
-  });
+  .name(packageJson.name)
+  .usage(chalk.green('<project-name>'))
+  .version(packageJson.version);
 
 /**
  * args
@@ -62,9 +50,14 @@ if (fs.existsSync(project)) {
         message: '目录已存在，继续?'
       }
     ])
-    .then(() => {
-      // 确认运行
-      init();
+    .then((ans) => {
+      if (ans.ok) {
+        // 确认运行
+        init();
+      } else {
+        console.log();
+        process.exit(1);
+      }
     })
     .catch((error) => {
       console.error(chalk.red(error));
@@ -75,14 +68,19 @@ if (fs.existsSync(project)) {
   inquirer
     .prompt([
       {
-        name: 'sure',
+        name: 'ok',
         type: 'confirm',
         message: '即将生成代码，继续?'
       }
     ])
-    .then(() => {
-      // 确认运行
-      init();
+    .then((ans) => {
+      if (ans.ok) {
+        // 确认运行
+        init();
+      } else {
+        console.log();
+        process.exit(1);
+      }
     })
     .catch((error) => {
       console.error(chalk.red(error));
@@ -101,13 +99,16 @@ async function init() {
     // 检测
     await checkVersion('https://registry.npmjs.org/react-project-ts-cli');
     spinner.start();
-    await download('https://github.com/youngs-github/react-project-ts.git', project, {
-      checkout: 'master',
-      shallow: true
-    });
+    await download(
+      'https://github.com/youngs-github/react-project-ts.git',
+      project,
+      {
+        checkout: 'master',
+        shallow: true
+      }
+    );
     // 成功
     spinner.stop();
-    console.log();
     console.log(chalk.green('创建成功！'));
   } catch (e) {
     // 异常
